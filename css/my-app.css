@@ -176,7 +176,7 @@ img.ks-demo-lazy {display: block;width: 100%;height: auto;}
 .cardDiscoverLowest>.card-content>.list-block>ul>li>a>.item-inner>.item-title{font-size: 16px;color: #000;}
 .cardDiscoverLowest>.card-content>.list-block>ul>li>a>.item-inner:after{height: 0px;}
 /*.pageBackgroundColor{background: #edf0f5;}*/
-.pageBackgroundColor{    background: url(../img/homebackImg1.jpeg) center no-repeat;
+.pageBackgroundColor{    background: url(../img/background.jpg) center no-repeat;
     background-size: cover;
    }
 .pageBackgroundColor .home-page-padding	{    background-color: transparent;}
