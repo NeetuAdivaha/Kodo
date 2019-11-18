@@ -1,5 +1,5 @@
 // Initialize your app
-var SafarexApps = new Framework7({
+var myApp = new Framework7({
     modalTitle: 'My App',
     // If it is webapp, we can enable hash navigation:
     pushState: true,
@@ -29,10 +29,10 @@ var SafarexApps = new Framework7({
 	
     // Hide and show indicator during ajax requests
     onAjaxStart: function (xhr) {
-        SafarexApps.showIndicator();
+        myApp.showIndicator();
     },
     onAjaxComplete: function (xhr) {
-        SafarexApps.hideIndicator();
+        myApp.hideIndicator();
     },
 
 });
@@ -40,18 +40,20 @@ var SafarexApps = new Framework7({
 // Export selectors engine
 var $$ = Dom7;
 // Add view
-var mainView = SafarexApps.addView('.view-main', {
+var mainView = myApp.addView('.view-main', {
    domCache: true,
 });
 
 
 var RequestURL ='https://www.adivaha.com/demo/MobAppRequest';
-var TPHotelUrl ='//hotel.tripcollection.com/hotels';
-var TPFlightUrl ='//flight.tripcollection.com/flights';
-var marker='250960';
+var TPHotelUrl ='https://flight-images.adivaha.com/hotels';
+var TPFlightUrl ='https://apptravelpayouts.adivaha.com/flights';
+var marker='40247';
 
-SafarexApps.onPageInit('index', function (page) {
+myApp.onPageInit('index', function (page) {
 $$('.pageFlashLoaderKK').show();	
+
+
 setTimeout(function(){ $$('.pageFlashLoaderKK').hide('slow'); }, 3000);	
 
 
@@ -75,18 +77,18 @@ var startDate_txt = weekday[strDate.getDay()]+', '+strDate.getDate()+' '+monthNa
 var endDate_txt = weekday[enrDate.getDay()]+', '+enrDate.getDate()+' '+monthNames[(enrDate.getMonth()+1)]+' '+enrDate.getFullYear().toString().substr(-2);
 
 
-var htmlHotel ='<div class="history-home-page-main-left"><img src="img/hotels1.jpeg"></div><a href="'+TPHotelUrl+'?marker='+marker+'&destination=Dubai,United Arab Emirates&checkIn='+checkIn+'&checkOut='+checkOut+'&adults=2&children=&language=en&currency=USD&&cityId=25495" class="link external"><div class="history-home-page-main-right"><div class="history-home-text">Dubai - United Arab Emirates</div><div class="history-home-text1">'+startDate_txt+' - '+endDate_txt+'</div><div class="history-home-text2"><i class="fa fa-user"></i> 2 Guests </div><div class="history-home-text3"><i class="fa fa-bed"></i>1 Room </div></a></div>';
+var htmlHotel ='<div class="history-home-page-main-left"><i class="fa fa-home"></i></div><a href="'+TPHotelUrl+'?marker='+marker+'&destination=New Delhi&checkIn='+checkIn+'&checkOut='+checkOut+'&adults=2&children=&language=en&currency=USD&&cityId=24077" class="link external"><div class="history-home-page-main-right"><div class="history-home-text">New Delhi</div><div class="history-home-text1">'+startDate_txt+' - '+endDate_txt+'</div><div class="history-home-text2"><i class="fa fa-user"></i> 2 Guests </div><div class="history-home-text3"><i class="fa fa-bed"></i>1 Room </div></a></div>';
 $$('#storeHotelLists').html(htmlHotel);
 
 var htmlFlight ='<div class="history-home-page-main-left">'+
-					'<img src="img/flights1.jpeg">'+
+					'<i class="fa fa-plane"></i>'+
 				'</div>'+
 				'<div class="history-home-page-main-right">'+
 				  '<div class="history-recents">'+
 						'<div class="history-recents-left">'+
 						 '<a href="'+TPFlightUrl+'?marker='+marker+'&origin_name=Delhi,%20India&origin_iata=DEL&destination_name=Goa,%20India&destination_iata=GOI&depart_date='+checkIn+'&return_date=&Flights_Return_direct=enable&with_request=true&adults=1&children=0&infants=0&trip_class=0&currency=USD&locale=en&one_way=true&ct_guests=1passenger&ct_rooms=1" class="link external"><div class="deltopatfri">'+
 							'<div class="deltopatfri1">'+
-								'<span>DEl</span> <span><i class="fa fa-arrow-right"></i></span> <span>GOI</span>'+
+								'<span>DEL</span> <span><i class="fa fa-arrow-right"></i></span> <span>GOI</span>'+
 								'</div>'+
 									'<div class="deltopatfri2">'+
 								'<span>'+startDate_txt+'</span>'+
@@ -111,7 +113,8 @@ $$('#storeFlightLists').html(htmlFlight);
 
 $$(document).on('pageInit',function(e){
  var page =e.detail.page;
-$$('.pageFlashLoaderKK').hide();
+
+
 if(page.name=='search-hotels'){
 	var hotelType =page.query.hotelType;
 	//=== Set default date ===/
@@ -133,7 +136,7 @@ if(page.name=='search-hotels'){
 	var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 	
     var today =new Date();
-	var calendarRange = SafarexApps.calendar({
+	var calendarRange = myApp.calendar({
     input: '#appCalendar',
     dateFormat: 'M dd yyyy',
     rangePicker: true,
@@ -317,14 +320,13 @@ if(page.name=='search-hotels'){
 	}
 	
 	var rooms =$$('#number_of_rooms').val();
-   	//$$('#roomGuestTxt').html(rooms+' Rooms, '+guest+' Guests ');
-	$$('#roomGuestTxt').html(guest+' Guests ');
-	$$('#selectedDest_adults').html(guest+' Guests');
+   	$$('#roomGuestTxt').html(rooms+' Rooms, '+guest+' Guests ');
+	$$('#selectedDest_adults').html(guest+' Guests, '+rooms+' Rooms');
   }
   
   
   /*=== Auto suggetion ===*/
-  var autocompleteDropdownAjax = SafarexApps.autocomplete({
+  var autocompleteDropdownAjax = myApp.autocomplete({
 	opener: $$('#autocomplete-standalone-popup'),
     openIn: 'popup',
 	backOnSelect: true,
@@ -373,16 +375,14 @@ if(page.name=='search-hotels'){
 	
    });
 
-  $$('.findFlightResults').on('click', function(e){
-		var url ='search-flight-results.html?destination='+$$('#destination').val()+'&latitude='+$$('#latitude').val()+'&longitude='+$$('#longitude').val()+'&checkIn='+$$('#startDate').val()+'&checkOut='+$$('#endDate').val()+'&Cri_currency=USD&Cri_language=en_US&hotelType=1&rooms='+$$('#number_of_rooms').val()+'&adults='+adultsArr+'&childs='+childsArr+'&childAge=';
-	    mainView.router.loadPage(url);
-   });
+  
+  
   
   
    var hotelObject = [];
    $$('.findHotelResults').on('click', function(e){
-	   var formData = SafarexApps.formToData('#searchHotel_frm');
-	   SafarexApps.formStoreData('HotelRequestData',formData);
+	   var formData = myApp.formToData('#searchHotel_frm');
+	   myApp.formStoreData('HotelRequestData',formData);
 	  
 	 var adults =$$('#adults_0').val(); 
 	 var childs =$$('#childs_0').val();
@@ -400,13 +400,76 @@ if(page.name=='search-hotels'){
       var checkIn =startDateArr[2]+'-'+startDateArr[0]+'-'+startDateArr[1];
 	  var checkOut =endDateArr[2]+'-'+endDateArr[0]+'-'+endDateArr[1];
 
-	  var param ='marker='+marker+'&destination='+$$('#destination').val()+'&checkIn='+checkIn+'&checkOut='+checkOut+'&adults='+adults+'&children='+childAgeArr+'&language=en&currency=AED&&cityId='+$$('#region_id').val();
-     var url =TPHotelUrl+'?'+param;
-     window.location.href=url;
+	  //var url ='search-results.html?destination='+$$('#destination').val()+'&latitude='+$$('#latitude').val()+'&longitude='+$$('#longitude').val()+'&checkIn='+$$('#startDate').val()+'&checkOut='+$$('#endDate').val()+'&Cri_currency=USD&Cri_language=en_US&hotelType=1&rooms='+$$('#number_of_rooms').val()+'&adults=1&childs=&childAge=';
 	  
+	  var url ='search-results.html?destination='+$$('#destination').val()+'&latitude='+$$('#latitude').val()+'&longitude='+$$('#longitude').val()+'&checkIn='+checkIn+'&checkOut='+checkOut+'&Cri_currency=USD&Cri_language=en_US&hotelType=1&rooms='+$$('#number_of_rooms').val()+'&adults=1&childs=&childAge=';
+	
+	  
+	 // var url ='search-results.html?dest='+$$('#destination').val()+'&checkIn='+checkIn+'&checkOut='+checkOut+'&rooms='+$$('#number_of_rooms').val()+'&adults=2&children=0&childAge=0&language=en&currency=USD&cityId='+cityId+'&hotel_name=&datatype='; 
+	  //alert(url);
+	  mainView.router.loadPage(url);
+	 
    })
   
- }
+}
+
+/*=== Search Result page ====*/
+if(page.name=='search-results')
+{
+
+var destination =page.query.destination;
+var latitude =page.query.latitude;	 
+var longitude =page.query.longitude;	 
+var checkIn =page.query.checkIn;
+var checkOut =page.query.checkOut;
+var Cri_currency =page.query.Cri_currency;
+var Cri_language =page.query.Cri_language;
+var checkOut =page.query.checkOut;
+var rooms =page.query.rooms;
+var adults = page.query.adults;
+var childs = page.query.childs;
+var childAge = page.query.childAge;
+
+var cityId =latitude+'|'+longitude;
+
+//$$('#iFrameResizer0').attr('src','');
+var frameSrc ='https://www.adivaha.com/whitelabel/search-results/?version=v2&pid=77A211&mid=ADIM5C437514F0303&device=app&dest='+destination+'&checkIn='+checkIn+'&checkOut='+checkOut+'&rooms='+rooms+'&adults='+adults+'&children='+childs+'&childAge='+childAge+'&language=en&currency=USD&cityId='+cityId+'&hotel_name=&datatype=';
+$$('#iFrameResizer0').attr('src',frameSrc);
+
+
+$$("#pageContentDiv").html('<iframe src="'+frameSrc+'" scrolling="no" frameborder="0" style="width: 100%;height:550px; overflow: hidden;" id="iFrameResizer0"></iframe>');
+
+}
+
+/*=== Search Result page ====*/
+if(page.name=='hotel-detail')
+	
+{
+
+var hotelid =page.query.hotelid;
+var dest =page.query.dest;	
+var cityId  =page.query.cityId;
+var search_Session_Id =page.query.search_Session_Id;
+var checkIn =page.query.checkIn;
+var checkOut =page.query.checkOut;
+
+var rooms =page.query.rooms;
+var adults = page.query.adults;
+var children = page.query.children;
+var childAge = page.query.childAge;
+var language =page.query.language;
+var currency =page.query.currency;
+
+
+var frameSrc ='https://www.adivaha.com/whitelabel/online-booking/?version=v2&pid=77A211&mid=ADIM5C437514F0303&hotelid='+hotelid+'&dest='+dest+'&checkIn='+checkIn+'&checkOut='+checkOut+'&rooms='+rooms+'&adults='+adults+'&children='+children+'&language='+language+'&currency='+currency+'&cityId='+cityId+'&search_Session_Id='+search_Session_Id;
+
+$$("#detailPageDiv").html('');
+$$("#detailPageDiv").html('<iframe src="'+frameSrc+'" scrolling="no" frameborder="0" style="width: 100%; overflow: hidden;" id="iFrameResizer1"></iframe>');
+
+
+}
+
+
 
 
 /*=== Flight Modules ====*/ 
@@ -431,7 +494,7 @@ if(page.name=='search-flights'){
     var weekday = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 	var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var today =new Date();
-	var calendarRange = SafarexApps.calendar({
+	var calendarRange = myApp.calendar({
 	input: '#appCalendar',
 	dateFormat: 'M dd yyyy',
 	rangePicker: true,
@@ -456,7 +519,7 @@ if(page.name=='search-flights'){
 	   }
 	});	
    /*=== Activity Auto suggetion ===*/	
-   var autocompleteDropdownAjax = SafarexApps.autocomplete({
+   var autocompleteDropdownAjax = myApp.autocomplete({
 	opener: $$('#autocomplete-standalone-popup'),
 	openIn: 'popup',
 	backOnSelect: true,
@@ -502,7 +565,7 @@ if(page.name=='search-flights'){
 	}
   });
 
-  var autocompleteDropdownAjax = SafarexApps.autocomplete({
+  var autocompleteDropdownAjax = myApp.autocomplete({
 	opener: $$('#autocomplete-standalone-popup-to'),
 	openIn: 'popup',
 	backOnSelect: true,
@@ -625,11 +688,19 @@ if(page.name=='search-flights'){
    var endDate =$$('#endDate').val();
    var endDateArr =endDate.split('/');
    var departDate =startDateArr[2]+'-'+startDateArr[0]+'-'+startDateArr[1];
-   
+   /*
    if(one_way=='false'){ 
     var returnDate =endDateArr[2]+'-'+endDateArr[0]+'-'+endDateArr[1];
    }else{ 
 	var returnDate ='';   
+   }*/
+   var returnDate =endDateArr[2]+'-'+endDateArr[0]+'-'+endDateArr[1];
+   
+   if(one_way=='true'){
+	one_way='Yes';   
+   }
+   else{
+	one_way='No';   
    }
    
    var adults =$$('#adults').val();
@@ -640,13 +711,57 @@ if(page.name=='search-flights'){
    var ct_guests =passenger+'passenger';
    var Flights_Return_direct ='enable';
    
-   var param ='marker='+marker+'&origin_name='+$$('#flight_from').val()+'&origin_iata='+$$('#flight_locationId').val()+'&destination_name='+$$('#flight_to').val()+'&destination_iata='+$$('#flight_to_locationId').val()+'&depart_date='+departDate+'&return_date='+returnDate+'&Flights_Return_direct='+Flights_Return_direct+'&with_request=true&adults='+$$('#adults').val()+'&children='+$$('#childs').val()+'&infants='+$$('#infants').val()+'&trip_class='+trip_class+'&currency=USD&locale=en&one_way='+one_way+'&ct_guests='+ct_guests+'&ct_rooms=1'; 
-   var url =TPFlightUrl+'?'+param;
-   window.location.href=url;
-   // mainView.router.loadPage(url);
+ 
+   var from_iata_name =$$('#flight_from').val();
+   var fromArr =from_iata_name.split(",");
+   var from_country =fromArr[fromArr.length-1].trim();
+   var to_iata_name =$$('#flight_to').val();
+   var toArr =to_iata_name.split(",");
+   var to_country =toArr[toArr.length-1].trim();	
+	
+   if( (from_country=='India') && (to_country=='India')){
+	 var isDomestic ='Yes';	
+	}
+	else{
+	 var isDomestic ='No';	
+	}
+   
+   var url ='search-flight-results.html?origin_name='+$$('#flight_from').val()+'&origin_iata='+$$('#flight_locationId').val()+'&destination_name='+$$('#flight_to').val()+'&destination_iata='+$$('#flight_to_locationId').val()+'&depart_date='+departDate+'&return_date='+returnDate+'&adults='+$$('#adults').val()+'&children='+$$('#childs').val()+'&infants='+$$('#infants').val()+'&cabin='+trip_class+'&currency=INR&locale=en&one_way='+one_way+'&isDomestic='+isDomestic; 
+   
 
+   mainView.router.loadPage(url);
+   
   })
 }
+
+/*=== Search Result page ====*/
+if(page.name=='search-flight-results')
+{
+var origin_name =page.query.origin_name;
+var origin_iata =page.query.origin_iata;	 
+var destination_name =page.query.destination_name;	 
+var destination_iata =page.query.destination_iata;
+var depart_date =page.query.depart_date;
+var return_date =page.query.return_date;
+var adults = page.query.adults;
+var children = page.query.children;
+var infants = page.query.infants;
+var currency = page.query.currency;
+var locale = page.query.locale;
+var one_way = page.query.one_way;
+var cabin = page.query.cabin;
+var isDomestic = page.query.isDomestic;
+
+$$('.item-title').html(origin_name+'('+origin_iata+') To '+destination_name+'('+destination_iata+')');
+//$$('#iFrameResizer0').attr('src','');
+var frameSrc ='https://www.adivaha.com/whitelabel/search-results/?version=v2&pid=77A211&mid=ADIM5C66A1BF561B1&mt=mt&aid=&origin_name='+origin_name+'&origin_iata='+origin_iata+'&destination_name='+destination_name+'&destination_iata='+destination_iata+'&depart_date='+depart_date+'&return_date='+return_date+'&one_way='+one_way+'&adults='+adults+'&children='+children+'&infants='+infants+'&currency='+currency+'&language='+locale+'&isDomestic='+isDomestic+'&cabin='+cabin;
+$$('#iFrameResizer0').attr('src',frameSrc);
+/*
+$$("#pageContentDiv").html('<iframe src="'+frameSrc+'" scrolling="no" frameborder="0" style="width: 100%; overflow: hidden;" id="iFrameResizer0"></iframe>');
+*/
+
+}
+
   
  
 });
