@@ -1,6 +1,6 @@
 // Initialize your app
 var myApp = new Framework7({
-    modalTitle: 'My App',
+    modalTitle: 'elmundoholidays',
     // If it is webapp, we can enable hash navigation:
     pushState: true,
     material: true,
@@ -115,8 +115,9 @@ $$(document).on('pageInit',function(e){
  var page =e.detail.page;
 
 
-if(page.name=='search-hotels'){
+if(page.name=='search-hotels'){ 
 	var hotelType =page.query.hotelType;
+	
 	//=== Set default date ===/
 	var strDate =new Date();
 	var enrDate =new Date();
@@ -380,13 +381,13 @@ if(page.name=='search-hotels'){
   
   
    var hotelObject = [];
-   $$('.findHotelResults').on('click', function(e){
+  
+   $$('.findHotelResults').on('click', function(e){ 
 	   var formData = myApp.formToData('#searchHotel_frm');
-	   myApp.formStoreData('HotelRequestData',formData);
-	  
+	   //myApp.formStoreData('HotelRequestData',formData);
 	 var adults =$$('#adults_0').val(); 
 	 var childs =$$('#childs_0').val();
-	 var childAgeArr= new  Array;
+	 var childAgeArr= new Array;
 	 $$('.childAgeCls select').each(function(){ 
 		   var relKey =$$(this).attr('relKey');
 		   childAgeArr.push([relKey, $$(this).val()]); 
@@ -397,16 +398,25 @@ if(page.name=='search-hotels'){
       var startDateArr =startDate.split('/');
       var endDate =$$('#endDate').val();
       var endDateArr =endDate.split('/');
-      var checkIn =startDateArr[2]+'-'+startDateArr[0]+'-'+startDateArr[1];
-	  var checkOut =endDateArr[2]+'-'+endDateArr[0]+'-'+endDateArr[1];
-
-	  //var url ='search-results.html?destination='+$$('#destination').val()+'&latitude='+$$('#latitude').val()+'&longitude='+$$('#longitude').val()+'&checkIn='+$$('#startDate').val()+'&checkOut='+$$('#endDate').val()+'&Cri_currency=USD&Cri_language=en_US&hotelType=1&rooms='+$$('#number_of_rooms').val()+'&adults=1&childs=&childAge=';
 	  
+	  var m =startDateArr[0];
+	  var d =startDateArr[1];
+	  if(d<10){d ='0'+d; }
+	  if(m<10){m ='0'+m; }
+	  
+	  var rm =endDateArr[0];
+	  var rd =endDateArr[1];
+	  if(rd<10){rd ='0'+rd; }
+	  if(rm<10){rm ='0'+rm; }
+	  
+      //var checkIn =startDateArr[2]+'-'+startDateArr[0]+'-'+startDateArr[1];
+	  //var checkOut =endDateArr[2]+'-'+endDateArr[0]+'-'+endDateArr[1];
+	  
+	  var checkIn =startDateArr[2]+'-'+m+'-'+d;
+	  var checkOut =endDateArr[2]+'-'+rm+'-'+rd;
+	
 	  var url ='search-results.html?destination='+$$('#destination').val()+'&latitude='+$$('#latitude').val()+'&longitude='+$$('#longitude').val()+'&checkIn='+checkIn+'&checkOut='+checkOut+'&Cri_currency=USD&Cri_language=en_US&hotelType=1&rooms='+$$('#number_of_rooms').val()+'&adults=1&childs=&childAge=';
 	
-	  
-	 // var url ='search-results.html?dest='+$$('#destination').val()+'&checkIn='+checkIn+'&checkOut='+checkOut+'&rooms='+$$('#number_of_rooms').val()+'&adults=2&children=0&childAge=0&language=en&currency=USD&cityId='+cityId+'&hotel_name=&datatype='; 
-	  //alert(url);
 	  mainView.router.loadPage(url);
 	 
    })
@@ -416,7 +426,10 @@ if(page.name=='search-hotels'){
 /*=== Search Result page ====*/
 if(page.name=='search-results')
 {
+$$('.pageFlashLoaderKK').show();	
 
+
+setTimeout(function(){ $$('.pageFlashLoaderKK').hide('slow'); }, 3000);	
 var destination =page.query.destination;
 var latitude =page.query.latitude;	 
 var longitude =page.query.longitude;	 
@@ -443,7 +456,10 @@ $$('.search-resultspage').find('iframe').attr('src',frameSrc);
 
 /*=== Search Result page ====*/
 if(page.name=='hotel-detail'){
+$$('.pageFlashLoaderKK').show();	
 
+
+setTimeout(function(){ $$('.pageFlashLoaderKK').hide('slow'); }, 3000);	
 var hotelid =page.query.hotelid;
 var hotelname =page.query.hotelname;
 var dest =page.query.dest;	
@@ -456,7 +472,6 @@ var latitude =latlongArr[0];
 var search_Session_Id =page.query.search_Session_Id;
 var checkIn =page.query.checkIn;
 var checkOut =page.query.checkOut;
-
 var rooms =page.query.rooms;
 var adults = page.query.adults;
 var children = page.query.children;
@@ -744,7 +759,10 @@ if(page.name=='search-flights'){
 
 /*=== Search Result page ====*/
 if(page.name=='search-flight-results')
-{
+{$$('.pageFlashLoaderKK').show();	
+
+
+setTimeout(function(){ $$('.pageFlashLoaderKK').hide('slow'); }, 3000);	
 var origin_name =page.query.origin_name;
 var origin_iata =page.query.origin_iata;	 
 var destination_name =page.query.destination_name;	 
@@ -769,9 +787,50 @@ $$("#pageContentDiv").html('<iframe src="'+frameSrc+'" scrolling="no" frameborde
 */
 
 }
+if(page.name=='contact-us')
+{
+  var pageContainer = $$(page.container);
+  pageContainer.find('.list-button').on('click', function () {
+    var username = pageContainer.find('input[name="username"]').val();
+    var email = pageContainer.find('input[name="email"]').val();
+    // Handle username and password
+    myApp.alert('Username: ' + username + ', email: ' + password, function () {
+      mainView.goBack();
+    });
+  });
+}
+if(page.name=='login-page')
+{
+$$('.pageFlashLoaderKK').show();	
 
-  
- 
+
+setTimeout(function(){ $$('.pageFlashLoaderKK').hide('slow'); }, 3000);	
+
+
+var frameSrc ='https://www.adivaha.com/whitelabel/user-management/?version=v2&pid=77A473&mid=USERMANAGEMENT&mt=login&aid=&action=logout&ParentRestParam=';
+$$('#iFrameResizer0').attr('src',frameSrc);
+/*
+$$("#pageContentDiv").html('<iframe src="'+frameSrc+'" scrolling="no" frameborder="0" style="width: 100%; overflow: hidden;" id="iFrameResizer0"></iframe>');
+*/
+
+}
+
+
+if(page.name=='my-booking')
+{
+$$('.pageFlashLoaderKK').show();	
+
+
+setTimeout(function(){ $$('.pageFlashLoaderKK').hide('slow'); }, 3000);	
+
+
+var frameSrc ='https://www.adivaha.com/whitelabel/my-booking/?version=v2&pid=77A473&mid=USERMANAGEMENT&mt=mt&aid=7&&ParentRestParam=';
+$$('#iFrameResizer0').attr('src',frameSrc);
+/*
+$$("#pageContentDiv").html('<iframe src="'+frameSrc+'" scrolling="no" frameborder="0" style="width: 100%; overflow: hidden;" id="iFrameResizer0"></iframe>');
+*/
+
+}
 });
 
 
