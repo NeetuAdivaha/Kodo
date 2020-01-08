@@ -3,7 +3,7 @@
 .padding-top-56{padding-top: 56px !important;}
 .pageBackgroundColor .box-shadow-none{box-shadow:none !important}
 .BoxPageHotelNear{    font-size: 20px;
-    margin-left: 31px;}.navbar a.link, .subnavbar a.link, .toolbar a.link{    padding: 0 0px !important;}
+    margin-left: 31px;}.navbar a.link, .subnavbar a.link, .toolbar a.link{}
 .HomeCard{}
 .card-content-inner1{position: absolute;top: 127px;left: 0px;right: 0px;overflow-y: hidden;}
 .titeltext{font-size:15px;color:#f7941d;padding:7px 7px 7px 8px;font-weight:500;text-align:center}
@@ -104,7 +104,7 @@ img.ks-demo-lazy {display: block;width: 100%;height: auto;}
     position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 78%;
+    max-width: 100%;
     font-size: 14px;
     font-weight: 500;
     padding-bottom: 0px;}.navbar .center{    font-size: 14px !important;}
@@ -469,7 +469,15 @@ img.ks-demo-lazy {display: block;width: 100%;height: auto;}
 .content-block4{border-top:1px solid #ddd;}
 .row-inner{padding-left: 6px;border-bottom: 1px solid #ddd;}
 .confirmation-page-inner{}
-.searchbar{top:0!important;z-index:999!important;height:56px;left:0px!important;box-shadow:none!important}
+.searchbar{    top: 0!important;
+    z-index: 999!important;
+    height: 56px;
+    /* left: 22px!important; */
+    /* right: 11px !important; */
+    box-shadow: none!important;
+    /* width: 94% !important; */
+    margin-left: 22px;}
+	.searchbar .searchbar-input{    margin-right: 15px;}
 .searchbar~.page-content{padding-top: 24px!important;}
 .search-resultspage .navbar-inner{box-shadow: 0 2px 12px rgba(0,0,0,.175);}
 .img_text{    padding: 43px;}
@@ -974,7 +982,7 @@ margin-top: 10%;}
      position: fixed;
     z-index: 9999;
     text-align: center;
-    background-color: #f2f2f2;
+      background-color: #2153a2;
     height: 100%;
     width: 100%;
 }
