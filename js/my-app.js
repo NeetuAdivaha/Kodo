@@ -450,7 +450,7 @@ $$('.search-resultspage').find('.search-resultsPageNavbarTitlef').html('CheckIn:
 
 //$$('#iFrameResizer0').attr('src','');
 
-var frameSrc ='https://www.adivaha.com/whitelabel/search-results/?version=v2&pid=77A473&mid=ADIM5C437514F0303&device=app&dest='+destination+'&checkIn='+checkIn+'&checkOut='+checkOut+'&rooms='+rooms+'&adults='+adults+'&children='+childs+'&childAge='+childAge+'&language=en&currency=USD&cityId='+cityId+'&hotel_name=&datatype=';
+var frameSrc ='https://www.abengines.com/search-results/?version=v2&pid=77A473&mid=ADIM5C437514F0303&device=app&dest='+destination+'&checkIn='+checkIn+'&checkOut='+checkOut+'&rooms='+rooms+'&adults='+adults+'&children='+childs+'&childAge='+childAge+'&language=en&currency=USD&cityId='+cityId+'&hotel_name=&datatype=';
 $$('.search-resultspage').find('iframe').attr('src',frameSrc);
 }
 
@@ -485,7 +485,7 @@ $$('.hotel-detailpage').find('.search-resultsPageNavbarTitle').html(hotelname);
 $$('.hotel-detailpage').find('.search-resultsPageNavbarTitlef').html('<span>CheckIn: '+checkIn+' | CheckOut: '+checkOut+' | Rooms: '+rooms+'</span>');
 
 //$$('#iFrameResizer1').attr('src','');
-var frameSrc ='https://www.adivaha.com/whitelabel/online-booking/?version=v2&pid=77A473&mid=ADIM5C437514F0303&hotelid='+hotelid+'&dest='+dest+'&checkIn='+checkIn+'&checkOut='+checkOut+'&rooms='+rooms+'&adults='+adults+'&children='+children+'&language='+language+'&currency='+currency+'&cityId='+cityId+'&search_Session_Id='+search_Session_Id;
+var frameSrc ='https://www.abengines.com/online-booking/?version=v2&pid=77A473&mid=ADIM5C437514F0303&hotelid='+hotelid+'&dest='+dest+'&checkIn='+checkIn+'&checkOut='+checkOut+'&rooms='+rooms+'&adults='+adults+'&children='+children+'&language='+language+'&currency='+currency+'&cityId='+cityId+'&search_Session_Id='+search_Session_Id;
 
 //$$('#iFrameResizer1').attr('src',frameSrc);
 $$('.hotel-detailpage').find('iframe').attr('src',frameSrc);
@@ -780,7 +780,7 @@ var isDomestic = page.query.isDomestic;
 
 $$('.item-title').html(origin_name+' ('+origin_iata+') To '+destination_name+' ('+destination_iata+')');
 //$$('#iFrameResizer0').attr('src','');
-var frameSrc ='https://www.adivaha.com/whitelabel/search-results/?version=v2&pid=77A473&mid=ADIM5C66A1BF561B1&mt=mt&aid=&origin_name='+origin_name+'&origin_iata='+origin_iata+'&destination_name='+destination_name+'&destination_iata='+destination_iata+'&depart_date='+depart_date+'&return_date='+return_date+'&one_way='+one_way+'&adults='+adults+'&children='+children+'&infants='+infants+'&currency='+currency+'&language='+locale+'&isDomestic='+isDomestic+'&cabin='+cabin;
+var frameSrc ='https://www.abengines.com/search-results/?version=v2&pid=77A473&mid=ADIM5C66A1BF561B1&mt=mt&aid=&origin_name='+origin_name+'&origin_iata='+origin_iata+'&destination_name='+destination_name+'&destination_iata='+destination_iata+'&depart_date='+depart_date+'&return_date='+return_date+'&one_way='+one_way+'&adults='+adults+'&children='+children+'&infants='+infants+'&currency='+currency+'&language='+locale+'&isDomestic='+isDomestic+'&cabin='+cabin;
 $$('#iFrameResizer0').attr('src',frameSrc);
 /*
 $$("#pageContentDiv").html('<iframe src="'+frameSrc+'" scrolling="no" frameborder="0" style="width: 100%; overflow: hidden;" id="iFrameResizer0"></iframe>');
@@ -807,7 +807,7 @@ $$('.pageFlashLoaderKK').show();
 setTimeout(function(){ $$('.pageFlashLoaderKK').hide('slow'); }, 3000);	
 
 
-var frameSrc ='https://www.adivaha.com/whitelabel/user-management/?version=v2&pid=77A473&mid=USERMANAGEMENT&mt=login&aid=&action=logout&ParentRestParam=';
+var frameSrc ='https://www.abengines.com/user-management/?version=v2&pid=77A473&mid=USERMANAGEMENT&mt=login&aid=&action=logout&ParentRestParam=';
 $$('#iFrameResizer0').attr('src',frameSrc);
 /*
 $$("#pageContentDiv").html('<iframe src="'+frameSrc+'" scrolling="no" frameborder="0" style="width: 100%; overflow: hidden;" id="iFrameResizer0"></iframe>');
@@ -824,7 +824,7 @@ $$('.pageFlashLoaderKK').show();
 setTimeout(function(){ $$('.pageFlashLoaderKK').hide('slow'); }, 3000);	
 
 
-var frameSrc ='https://www.adivaha.com/whitelabel/my-booking/?version=v2&pid=77A473&mid=USERMANAGEMENT&mt=mt&aid=7&&ParentRestParam=';
+var frameSrc ='https://www.abengines.com/my-booking/?version=v2&pid=77A473&mid=USERMANAGEMENT&mt=mt&aid=7&&ParentRestParam=';
 $$('#iFrameResizer0').attr('src',frameSrc);
 /*
 $$("#pageContentDiv").html('<iframe src="'+frameSrc+'" scrolling="no" frameborder="0" style="width: 100%; overflow: hidden;" id="iFrameResizer0"></iframe>');
