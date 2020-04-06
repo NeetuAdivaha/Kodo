@@ -469,14 +469,14 @@ img.ks-demo-lazy {display: block;width: 100%;height: auto;}
 .content-block4{border-top:1px solid #ddd;}
 .row-inner{padding-left: 6px;border-bottom: 1px solid #ddd;}
 .confirmation-page-inner{}
-.searchbar{    top: 0!important;
+    top: 0!important;
     z-index: 999!important;
     height: 56px;
-    /* left: 22px!important; */
-    /* right: 11px !important; */
+    left: 22px!important;
+    right: 11px !important;
     box-shadow: none!important;
-    /* width: 94% !important; */
-    margin-left: 22px;}
+    width: 94% !important;
+    margin-left: 22px;
 	.searchbar .searchbar-input{    margin-right: 15px;}
 .searchbar~.page-content{padding-top: 24px!important;}
 .search-resultspage .navbar-inner{box-shadow: 0 2px 12px rgba(0,0,0,.175);}
