@@ -827,6 +827,20 @@ $$("#pageContentDiv").html('<iframe src="'+frameSrc+'" scrolling="no" frameborde
 */
 
 }
+if(page.name=='Hotels1')
+{
+$$('.pageFlashLoaderKK').show();	
+
+
+setTimeout(function(){ $$('.pageFlashLoaderKK').hide('slow'); }, 3000);	
+
+
+
+/*
+$$("#pageContentDiv").html('<iframe src="'+frameSrc+'" scrolling="no" frameborder="0" style="width: 100%; overflow: hidden;" id="iFrameResizer0"></iframe>');
+*/
+
+}
 
 
 if(page.name=='my-booking')
